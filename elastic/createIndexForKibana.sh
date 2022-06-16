@@ -25,5 +25,35 @@ date=2022-06
 
 # 更新日志
 log_file=${logst_url}/update_index.log
-echo "${date}" >> ${log_file}
+echo "${date}" >>${log_file}
 
+#中间文件，用来存放type_log.txt中有用的行和其行号
+middle_file=${logst_url}/middle.txt
+grep -E -n '^[[:alnum:]]' ${domain_name_file} >${middle_file}
+
+domain_name_num=$(wc -l ${middle_file} | awk '{print $1}')
+for ((i = 1; i <= ${domain_name_num}; i++)); do
+  domain_name_type=$(sed -n "${i}p" ${middle_file} | awk -F':' '{print $2}')
+  ###开始新增新的索引
+  if [ $action == "add" ]; then
+    curl -f -XPOST -H 'Content-Type: application/json' -H 'kbn-xsrf: anything' \
+      "${URL}/api/saved_objects/index-pattern/logstash-app_${domain_name_type}_${date}" -d"{\"attributes\":{\"title\":\"logstash-app_${domain_name_type}_${date}\",\"timeFieldName\":\"@timestamp\"}}" >>${log_file}
+  elif [ $action == "del" ]; then
+    curl -XDELETE "${URL}/api/saved_objects/index-pattern/logstash-app_${domain_name_type}_${date}" -H 'kbn-xsrf: true' >/dev/null
+  else
+    echo "action errror" >>${log_file}
+    exit 100
+  fi
+
+  #对每一条操作都进行日志记录，这样每月凌晨执行完成后，可过滤日志文件，将错误发送给集群负责人。
+  if [ $? -eq 0 ]; then
+    echo "success ${domain_name_type}" >>${log_file}
+  else
+    echo "error ${domain_name_type}" >>${log_file}
+  fi
+done
+
+#添加默认索引
+curl -f -XPOST -H 'Content-Type: application/json' -H 'kbn-xsrf: anything' ${URL}/api/kibana/settings/defaultIndex -d "{\"value\":\"logstash-app_www_${date}\"}" >>${log_file}
+
+mv -f ${logst_url}/middle.txt /tmp/
