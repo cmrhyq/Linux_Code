@@ -12,11 +12,11 @@ SERVICE_NAME="OpenVPN"
 echo "Current Dir Path: ${WORK_DIR}"
 
 PID_DIR="${WORK_DIR}/pid"
-PID="${PID_DIR}/${service_name}.pid"
+PID="${PID_DIR}/${SERVICE_NAME}.pid"
 
 # Check that the program is running
 is_exist(){
-  pid=`ps -ef | grep ${JAR_NAME} | grep -v grep | awk '{print $2}' `
+  pid=`ps -ef | grep ${SERVICE_NAME} | grep -v grep | awk '{print $2}' `
   # Returns 1 if it does not exist and 0 if it exists
   if [ -z "${pid}" ]; then
     return 1
@@ -25,7 +25,7 @@ is_exist(){
   fi
 }
 
-function start(){
+start(){
     is_exist
     if [ $? -eq "0" ]; then
         echo ">>> runing PID = " ${pid} "<<<"
@@ -37,7 +37,7 @@ function start(){
     echo ">>> Log Path: ${LOG_PATH} <<<" 
 }
 
-function stop(){
+stop(){
       # is_exist
   pidf="$(cat ${PID})"
   # echo "$pidf"  
@@ -56,12 +56,12 @@ function stop(){
   fi  
 }
 
-function restart(){
+restart(){
   stop
   start
 }
 
-function status(){
+status(){
   is_exist
   if [ $? -eq "0" ]; then
     echo ">>> ${SERVICE_NAME} is running PID is ${pid} <<<"
@@ -70,46 +70,46 @@ function status(){
   fi
 }
 
-function disable(){
+disable(){
     echo "No such function"
 }
 
-function enable(){
+enable(){
     echo "No such function"
 }
 
-function showLog(){
+showLog(){
     tail -f "${LOG_PATH}"
 }
 
-function help() {
+help() {
     echo "OpenVPN 服务管理"
     echo "Usage: manage.sh [ stop | start | status | restart | disable | enable | log ]"
 }
 
 case "$1" in
-    start)
+    "start")
         start
         ;;
-    stop)
+    "stop")
         stop
         ;;
-    restart)
+    "restart")
         restart
         ;;
-    status)
+    "status")
         status
         ;;
-    disable)
+    "disable")
         disable
         ;;
-    enable)
+    "enable")
         enable
         ;;
-    log)
+    "log")
         showLog
         ;;
-    help)
+    "help")
         help
         ;;
     *)
