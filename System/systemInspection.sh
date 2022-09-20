@@ -741,6 +741,6 @@ function check() {
 check >$RESULTFILE
 
 echo "检查结果：$RESULTFILE"
-echo -e "$(date "+%Y-%m-%d %H:%M:%S") 阿里云PHP企业平台巡检报告" | mail -a $RESULTFILE -s "阿里云PHP企业平台巡检报告" cmrhyq@163.com
+echo -e "$(date "+%Y-%m-%d %H:%M:%S") server-1.cmrhyq.cn 主机巡检报告" | mail -a $RESULTFILE -s "server-1.cmrhyq.cn 主机巡检报告" cmrhyq@163.com
 
 END
