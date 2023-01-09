@@ -1,6 +1,10 @@
 #!/bin/bash
-# Author: AlanHuang
-# Description: 屏蔽攻击ip
+# @Author: Alan Huang
+# @Date:   2020-12-26 09:56:57
+# @Last Modified by:   Alan Huang
+# @Last Modified time: 2020-12-26 11:06:31
+# @E-mail: cmrhyq@163.com
+# @Description: 屏蔽攻击ip
 
 DATE=$(date + %d/%b/%Y:%H:%M)
 LOG_FILE=/usr/local/nginx/logs/shield_ip.log

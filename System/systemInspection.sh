@@ -1,11 +1,10 @@
 #!/bin/bash
-# @Author: HanWei
-# @Date:   2020-03-16 09:56:57
-# @Last Modified by:   HanWei
-# @Last Modified time: 2020-03-16 11:06:31
-# @E-mail: han_wei_95@163.com
-#!/bin/bash
-#主机信息每日巡检
+# @Author: Alan Huang
+# @Date:   2020-12-26 09:56:57
+# @Last Modified by:   Alan Huang
+# @Last Modified time: 2020-12-26 11:06:31
+# @E-mail: cmrhyq@163.com
+# @Description: 主机信息每日巡检
 
 IPADDR=$(ifconfig eth0 | grep 'inet addr' | awk -F '[ :]' '{print $13}')
 #环境变量PATH没设好，在cron里执行时有很多命令会找不到

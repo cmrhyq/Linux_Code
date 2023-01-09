@@ -1,6 +1,11 @@
-#!/bin/sh
-#bulk rename
-#2022/7/23
+#!/bin/bash
+# @Author: Alan Huang
+# @Date:   2020-12-26 09:56:57
+# @Last Modified by:   Alan Huang
+# @Last Modified time: 2020-12-26 11:06:31
+# @E-mail: cmrhyq@163.com
+# @Description: bulk rename
+# 2022/7/23
 # English Documentation
 # 1. % sign interception, delete the right character, keep the left character
 # 2. %% sign interception, delete the right character, keep the left character

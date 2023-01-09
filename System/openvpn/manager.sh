@@ -1,6 +1,10 @@
-#!/bin/sh
-# Author：Alan Huang
-# Description: OpenVPN管理
+#!/bin/bash
+# @Author: Alan Huang
+# @Date:   2020-12-26 09:56:57
+# @Last Modified by:   Alan Huang
+# @Last Modified time: 2020-12-26 11:06:31
+# @E-mail: cmrhyq@163.com
+# @Description: OpenVPN管理
 
 cd $(dirname $0)
 WORK_DIR=$(pwd)

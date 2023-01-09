@@ -1,7 +1,10 @@
 #!/bin/bash
-
-# Author: AlanHuang
-# Description:此脚本用于每个月自动更新kibana索引
+# @Author: Alan Huang
+# @Date:   2020-12-26 09:56:57
+# @Last Modified by:   Alan Huang
+# @Last Modified time: 2020-12-26 11:06:31
+# @E-mail: cmrhyq@163.com
+# @Description: 此脚本用于每个月自动更新kibana索引
 #   操作类型分为add和delete
 #   每月1号凌晨3点执行
 #   所有elasticsearch中的索引写入type_log.txt文件中，

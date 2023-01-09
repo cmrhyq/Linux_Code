@@ -1,7 +1,11 @@
-#!/bin/sh
-#Author: AlanHuang
-#Date: 2022-7-18
-#Description: Move the file on the specified date to the specified directory
+#!/bin/bash
+# @Author: Alan Huang
+# @Date:   2020-12-26 09:56:57
+# @Last Modified by:   Alan Huang
+# @Last Modified time: 2020-12-26 11:06:31
+# @E-mail: cmrhyq@163.com
+# @Description: Move the file on the specified date to the specified directory
+
 DATE=${1}
 
 FILE_PATH_1=/opt
